@@ -1,7 +1,7 @@
-/* 
-  DO NOT EDIT 
-  This is an generated file. Regenerate by executing `node ./code-generator/IconName.js`
-*/
+/*
+   DO NOT EDIT
+   This is an generated file. Regenerate by executing `node ./code-generator/IconName.js`
+ */
 type t = string;
 
 let toString = t => t;
@@ -583,5 +583,3 @@ let dribbbleSquare = "dribbble-square";
 let instagram = "instagram";
 
 let yuque = "yuque";
-
-
