@@ -89,6 +89,7 @@ let make =
       ~id=?,
       ~className=?,
       ~style=?,
+      ~testID=?,
       children,
     ) =>
   ReasonReact.wrapJsForReason(
@@ -113,6 +114,7 @@ let make =
         ~id?,
         ~className?,
         ~style?,
+        ~testID?,
         (),
       ),
     children,
