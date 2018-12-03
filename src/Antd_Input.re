@@ -4,16 +4,28 @@
 
 [@bs.deriving abstract]
 type jsProps = {
-  [@bs.optional] [@bs.as "type"] htmlType: string,
-  [@bs.optional] name: string,
-  [@bs.optional] value: string,
-  [@bs.optional] defaultValue: string,
-  [@bs.optional] onChange: ReactEvent.Form.t => unit,
-  [@bs.optional] onPressEnter: ReactEvent.Keyboard.t => unit,
-  [@bs.optional] onBlur: ReactEvent.Focus.t => unit,
-  [@bs.optional] className: string,
-  [@bs.optional] style: ReactDOMRe.Style.t,
-  [@bs.optional] placeholder: string,
+  [@bs.optional] [@bs.as "type"]
+  htmlType: string,
+  [@bs.optional]
+  name: string,
+  [@bs.optional]
+  value: string,
+  [@bs.optional]
+  defaultValue: string,
+  [@bs.optional]
+  onChange: ReactEvent.Form.t => unit,
+  [@bs.optional]
+  onPressEnter: ReactEvent.Keyboard.t => unit,
+  [@bs.optional]
+  onBlur: ReactEvent.Focus.t => unit,
+  [@bs.optional]
+  className: string,
+  [@bs.optional]
+  style: ReactDOMRe.Style.t,
+  [@bs.optional]
+  placeholder: string,
+  [@bs.optional] [@bs.as "data-testid"]
+  testID: string,
 };
 
 let make =
@@ -28,6 +40,7 @@ let make =
       ~className=?,
       ~style=?,
       ~placeholder=?,
+      ~testID=?,
       children,
     ) =>
   ReasonReact.wrapJsForReason(
@@ -44,6 +57,7 @@ let make =
         ~className?,
         ~style?,
         ~placeholder?,
+        ~testID?,
         (),
       ),
     children,

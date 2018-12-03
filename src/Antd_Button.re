@@ -27,31 +27,47 @@ module LoadingProps = {
     | Delay(a) => a |> ofDelay;
 };
 
-[@bs.obj]
-external makeProps:
-  (
-    ~_type: string=?,
-    ~htmlType: string=?,
-    ~icon: IconName.t=?,
-    ~shape: string=?,
-    ~size: string=?,
-    ~onClick: ReactEvent.Mouse.t => unit=?,
-    ~onMouseUp: ReactEvent.Mouse.t => unit=?,
-    ~onMouseDown: ReactEvent.Mouse.t => unit=?,
-    ~tabIndex: int=?,
-    ~loading: LoadingProps.js=?,
-    ~disabled: bool=?,
-    ~ghost: bool=?,
-    ~target: string=?,
-    ~href: string=?,
-    ~download: string=?,
-    ~id: string=?,
-    ~className: string=?,
-    ~style: ReactDOMRe.Style.t=?,
-    unit
-  ) =>
-  _ =
-  "";
+[@bs.deriving abstract]
+type jsProps = {
+  [@bs.optional] [@bs.as "type"]
+  _type: string,
+  [@bs.optional]
+  htmlType: string,
+  [@bs.optional]
+  icon: IconName.t,
+  [@bs.optional]
+  shape: string,
+  [@bs.optional]
+  size: string,
+  [@bs.optional]
+  onClick: ReactEvent.Mouse.t => unit,
+  [@bs.optional]
+  onMouseUp: ReactEvent.Mouse.t => unit,
+  [@bs.optional]
+  onMouseDown: ReactEvent.Mouse.t => unit,
+  [@bs.optional]
+  tabIndex: int,
+  [@bs.optional]
+  loading: LoadingProps.js,
+  [@bs.optional]
+  disabled: bool,
+  [@bs.optional]
+  ghost: bool,
+  [@bs.optional]
+  target: string,
+  [@bs.optional]
+  href: string,
+  [@bs.optional]
+  download: string,
+  [@bs.optional]
+  id: string,
+  [@bs.optional]
+  className: string,
+  [@bs.optional]
+  style: ReactDOMRe.Style.t,
+  [@bs.optional] [@bs.as "data-testid"]
+  testID: string,
+};
 
 let make =
     (
@@ -73,12 +89,13 @@ let make =
       ~id=?,
       ~className=?,
       ~style=?,
+      ~testID=?,
       children,
     ) =>
   ReasonReact.wrapJsForReason(
     ~reactClass,
     ~props=
-      makeProps(
+      jsProps(
         ~_type=?Js.Option.map((. b) => buttonTypeToJs(b), _type),
         ~htmlType?,
         ~icon?,
@@ -97,6 +114,7 @@ let make =
         ~id?,
         ~className?,
         ~style?,
+        ~testID?,
         (),
       ),
     children,
