@@ -26,6 +26,8 @@ type jsProps = {
   placeholder: string,
   [@bs.optional] [@bs.as "data-testid"]
   testID: string,
+  [@bs.optional]
+  autosize: bool,
 };
 
 let make =
@@ -64,8 +66,7 @@ let make =
   );
 
 module TextArea = {
-  [@bs.module "antd/lib/input"]
-  external reactClass: ReasonReact.reactClass = "TextArea";
+  [@bs.module "antd/lib/input"] external reactClass: ReasonReact.reactClass = "TextArea";
   let make =
       (
         ~htmlType=?,
@@ -78,6 +79,7 @@ module TextArea = {
         ~className=?,
         ~style=?,
         ~placeholder=?,
+        ~autosize=?,
         children,
       ) =>
     ReasonReact.wrapJsForReason(
@@ -94,6 +96,7 @@ module TextArea = {
           ~className?,
           ~style?,
           ~placeholder?,
+          ~autosize?,
           (),
         ),
       children,
