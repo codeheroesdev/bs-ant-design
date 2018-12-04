@@ -28,6 +28,8 @@ type jsProps = {
   testID: string,
   [@bs.optional]
   autosize: bool,
+  [@bs.optional]
+  disabled: bool,
 };
 
 let make =
@@ -43,6 +45,7 @@ let make =
       ~style=?,
       ~placeholder=?,
       ~testID=?,
+      ~disabled=?,
       children,
     ) =>
   ReasonReact.wrapJsForReason(
@@ -60,6 +63,7 @@ let make =
         ~style?,
         ~placeholder?,
         ~testID?,
+        ~disabled?,
         (),
       ),
     children,
